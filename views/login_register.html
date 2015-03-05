@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html ng-app="ngApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        .view-animate-container {
+            position:relative;
+            background:white;/*
+            border:1px solid black;*/
+        }
+        .view-animate {
+            padding:10px;
+            width: auto;
+            position: 0 auto;
+        }
+        .view-animate.ng-enter, .view-animate.ng-leave {
+
+            display:block;
+            width:100%;/*
+            border-left:1px solid black;*/
+
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            padding:10px;
+        }
+        .view-animate.ng-enter{
+            left:-100%;
+        }
+        .view-animate.ng-enter.ng-enter-active {
+            left:0;
+        }
+        .view-animate.ng-leave.ng-leave-active {
+            left:100%;
+        }
+        .ng-enter, .ng-leave{
+            transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.4s;
+        }
+
+        footer{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <script>
+        angular.module('ngApp',['ngRoute','ngAnimate']).config(function($routeProvider){
+
+            $routeProvider.when('/',{
+                templateUrl:'horizontal.html'
+            }).when('/horizontal',{
+                templateUrl:'horizontal.html'
+            }).when('/inline',{
+                templateUrl:'inline.html'
+            }).when('/buttons',{
+                templateUrl:'buttons.html'
+            }).otherwise({
+                redirectTo: '/'
+            });
+        });
+        document.addEventListener('DOMContentLoaded',function(){
+            console.log(document.querySelector('#navtab li[class="active"]'));
+
+            var active = document.querySelector('#navtab li[class="active"]');
+
+            document.getElementById('navtab').addEventListener('click',function(e){
+                active.removeAttribute('class');
+
+                active = e.target.parentNode;
+
+                active.setAttribute('class','active');
+                //console.log(e.target.parentNode.setAttribute('class','active'));
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">Email Receiver</a>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#/">Home</a></li>
+                    <li><a href="/#/upload">Upload resume</a></li>
+                    <li><a href="#about">Send email</a></li>
+                    <li><a href="#/search">Search Email</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+<!--<comment>
+    article should be a block element, why if I did not add container class lead to the wrapped content get out of stream?
+</comment>-->
+<article class="container">
+
+    <ul id="navtab" class="nav nav-tabs">
+        <li role="presentation" class="active">
+            <a href="#/horizontal">Horizontal Form</a>
+        </li>
+        <li role="presentation">
+            <a href="#/inline">Inline Form</a>
+        </li>
+        <li role="presentation">
+            <a href="#/buttons">Buttons</a>
+        </li>
+    </ul>
+    <div class="view-animate-container">
+        <div ng-view="" class="view-animate"></div>
+    </div>
+
+</article>
+
+<footer>
+    <nav class="navbar navbar-default" name="contact">
+            <span class="left">
+                <a>Advertising</a>
+                <a>Business</a>
+                <a>About</a>
+            </span>
+            <span class="right">
+                <a>Privacy</a>
+                <a>Terms</a>
+            </span>
+    </nav>
+</footer>
+</body>
+</html>
+
+
+
+
+
