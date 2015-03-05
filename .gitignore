@@ -1,4 +1,6 @@
 # Created by .gitignore support plugin (hsz.mobi)
+### nodejs template
+# Created by .gitignore support plugin (hsz.mobi)
 ### Node template
 # Logs
 logs
@@ -27,5 +29,9 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
-bin
+.gitignore
+bower_components
+public/bower_components
 .idea
+bin
+

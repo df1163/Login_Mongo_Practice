@@ -29,16 +29,19 @@
             padding:10px;
         }
         .view-animate.ng-enter{
-            left:-100%;
+            /*left:-100%;*/
+            opacity: 0;
         }
         .view-animate.ng-enter.ng-enter-active {
-            left:0;
+            /*left:0;*/
+            opacity: 1;
         }
         .view-animate.ng-leave.ng-leave-active {
-            left:100%;
+            /*left:100%;*/
+            opacity: 0;
         }
         .ng-enter, .ng-leave{
-            transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.4s;
+            transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
         }
 
         footer{
@@ -128,6 +131,18 @@
         </li>
         <li role="presentation">
             <a href="#/buttons">Buttons</a>
+        </li>
+        <li role="presentation" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                Dropdown <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
         </li>
     </ul>
     <div class="view-animate-container">
